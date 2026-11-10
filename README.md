@@ -6,7 +6,7 @@ Part of **[Epsilon Audio](https://github.com/natehouk/epsilon-plugins)**, a fami
 
 ![Monolith](screenshot.png)
 
-Monolith is a clean-room design with the same feature set as FabFilter One, FabFilter's first synthesizer (2002), plus a few extras. It was written from scratch, working only from FabFilter's public product description and help pages. No FabFilter code, binaries, presets, artwork or trademarks were used. The DSP is built from published, textbook techniques:
+Monolith is a subtractive synthesizer with a morphing oscillator, a self-oscillating multimode filter, two envelopes, an LFO, and mono or 10-voice poly play. It was written from scratch; no third-party code, presets or artwork are included. The DSP is built from published, textbook techniques:
 
 - PolyBLEP band-limited oscillators
 - a Zavalishin topology-preserving state-variable filter
@@ -117,29 +117,7 @@ xattr -dr com.apple.quarantine ~/Library/Audio/Plug-Ins/*/Monolith*
 - The preset browser **searches** names and categories as you type, and a star keeps a preset in **Favourites**.
 - A `*` after the name means you've edited the sound since loading it.
 
-### Compared with FabFilter One
-
-| FabFilter One | Monolith |
-|---|---|
-| Triangle / saw / square / noise oscillator | ✓ (continuous morph + sine) |
-| Pulse width + PWM (off / MG / EG / EG inverted) | ✓ |
-| Octave scale + detune | ✓ |
-| White / pink noise | ✓ |
-| Portamento, also in poly | ✓ |
-| Self-oscillating 12 dB low-pass | ✓ (+ band pass, high pass, drive) |
-| Cutoff mod from EG (± invert), MG, velocity, key tracking | ✓ |
-| Envelope with Hold | ✓ (+ a second, separate mod envelope) |
-| EG → oscillator pitch (± invert) | ✓ |
-| LFO triangle / square with balance, tempo sync 16 bars–1/64 | ✓ (+ sine) |
-| Mono / 10-voice poly | ✓ (+ legato, sustain pedal) |
-| Velocity → volume and cutoff | ✓ |
-| Typed values, Cmd/Ctrl-click reset, value display, scaling | ✓ |
-| MIDI Learn | ✓ |
-| Undo/redo, A/B | ✓ |
-| Preset saving | ✓ plain-text user presets |
-| Help with interactive hints | ✓ hover tips, help pages and full manual |
-| 100+ factory presets | 42 |
-| AAX / AudioSuite (Pro Tools) | not supported (needs Avid's SDK and signing) |
+Not supported: AAX / AudioSuite (Pro Tools).
 
 ## Build from source
 
@@ -197,5 +175,3 @@ New parameters are always appended to the end of the list, so automation and sav
 Monolith is released under the [MIT License](LICENSE).
 
 It's built with [DPF](https://github.com/DISTRHO/DPF) and the NanoVG library bundled with it. `plugins/Monolith/ResizeHandle.hpp` comes from DPF's examples. Both are under the permissive ISC license, and their notices are kept in their files.
-
-"FabFilter" and "FabFilter One" are trademarks of FabFilter Software Instruments. Monolith is not affiliated with or endorsed by FabFilter.
