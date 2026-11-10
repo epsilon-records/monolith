@@ -6,7 +6,7 @@ Part of **[Epsilon Audio](https://github.com/natehouk/epsilon-plugins)**, a fami
 
 ![Monolith](screenshot.png)
 
-Monolith is a subtractive synthesizer with a morphing oscillator, a self-oscillating multimode filter, two envelopes, an LFO, and mono or 10-voice poly play. It was written from scratch; no third-party code, presets or artwork are included. The DSP is built from published, textbook techniques:
+Monolith is a subtractive synthesizer with a morphing oscillator, a self-oscillating multimode filter, two envelopes, an LFO, and mono or 10-voice poly play. It was written from scratch: the DSP, interface and presets are original work, and third-party components (such as the DPF framework) are listed under [License](#license). The DSP is built from published, textbook techniques:
 
 - PolyBLEP band-limited oscillators
 - a Zavalishin topology-preserving state-variable filter
