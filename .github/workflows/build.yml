@@ -11,7 +11,7 @@ jobs:
   macos:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Fetch DPF
         run: git clone --depth 1 --recursive https://github.com/DISTRHO/DPF.git dpf
       - name: Build universal (arm64 + x86_64)
@@ -78,11 +78,11 @@ jobs:
           [ -e bin/Monolith.vst ] && cp -R bin/Monolith.vst dist/macos-universal/
           cp docs/Monolith-Manual.html dist/macos-universal/
           cd dist && ditto -c -k --keepParent macos-universal Monolith-macos-universal.zip
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Monolith-macos-universal
           path: dist/macos-universal
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: release-macos
           path: dist/Monolith-macos-universal.zip
@@ -90,18 +90,18 @@ jobs:
   windows:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install -y mingw-w64
       - run: git clone --depth 1 --recursive https://github.com/DISTRHO/DPF.git dpf
       - run: make -C plugins/Monolith -j3 WINDOWS=true CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++
       - run: |
           mkdir -p dist/windows-x64 && cp -R bin/Monolith.vst3 bin/Monolith.clap bin/Monolith-vst.dll docs/Monolith-Manual.html dist/windows-x64/
           cd dist && zip -r Monolith-windows-x64.zip windows-x64
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Monolith-windows-x64
           path: dist/windows-x64
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: release-windows
           path: dist/Monolith-windows-x64.zip
@@ -109,18 +109,18 @@ jobs:
   linux:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev libx11-dev libxext-dev libxrandr-dev libxcursor-dev libdbus-1-dev
       - run: git clone --depth 1 --recursive https://github.com/DISTRHO/DPF.git dpf
       - run: make -C plugins/Monolith -j3
       - run: |
           mkdir -p dist/linux-x64 && cp -R bin/Monolith.vst3 bin/Monolith.clap bin/Monolith-vst.so docs/Monolith-Manual.html dist/linux-x64/
           cd dist && zip -r Monolith-linux-x64.zip linux-x64
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: Monolith-linux-x64
           path: dist/linux-x64
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: release-linux
           path: dist/Monolith-linux-x64.zip
@@ -132,14 +132,14 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           pattern: release-*
           path: dist
           merge-multiple: true
       - name: Checksums
         run: cd dist && sha256sum *.zip > SHA256SUMS.txt && cat SHA256SUMS.txt
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/*.zip
